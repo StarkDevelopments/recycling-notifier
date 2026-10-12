@@ -1,0 +1,5 @@
+services:
+  recycling-notifier:
+    build: .
+    image: recycling-notifier:latest
+    env_file: .env

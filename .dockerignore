@@ -1,0 +1,13 @@
+__pycache__
+*.pyc
+.venv
+.aws-sam
+tests
+env.json
+events
+.env
+Dockerfile
+docker-compose.yml
+Makefile
+template.yaml
+*.md
