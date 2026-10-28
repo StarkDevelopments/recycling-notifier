@@ -57,9 +57,12 @@ Observed quirks:
 - `report.py` — pure report-building logic (`build_report`, weekday parsing): collections + a date in, `Report | None` out. No I/O and no env access, so it's unit-tested in isolation.
 - `scraper.py` — fetch + parse the API. Isolate URL + field mapping here; keep breakage in one module.
 - `notifiers/` — one module per channel behind a shared `send(title, body)` interface; `pushover.py` is the only channel so far.
-- `Dockerfile` — arm64 image (base `python:3.14-slim-bookworm`); non-root user; tzdata installed for `Europe/London`.
+- `Dockerfile` — multi-architecture image (`python:3.14-slim`); non-root user;
+  tzdata installed for `Europe/London`.
 - `docker-compose.yml` — build + run once with config/secrets from `.env`.
-- `run.sh` — helper: build-check + one-shot container run with `--env-file .env` (same command cron fires).
+- `run.sh` — helper: one-shot `docker run` with `--env-file .env` (same
+  command cron fires). It uses the existing image; build it first with
+  `docker compose build`.
 - `.env.example` — template for `.env`; copy, fill in secrets, never commit `.env`.
 - `README.md` — public-facing docs: what it does, how to find your UPRN, setup, cron, tests.
 - `LICENSE` — MIT.
